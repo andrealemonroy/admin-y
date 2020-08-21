@@ -48,7 +48,9 @@ const Login = (props) => {
       <section className="login__container">
         <h2>Inicia sesión</h2>
         <form className="login__container--form" onSubmit={handleSubmit}>
+        <label for="email">Correo</label>
           <input name="email" className="input" type="text" placeholder="Correo" onChange={handleInput}/>
+          <label for="password">Contraseña</label>
           <input name="password" className="input" type="password" placeholder="Contraseña" onChange={handleInput}/>
           <button className="button">Iniciar sesión</button>
         </form>
