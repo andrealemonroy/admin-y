@@ -1,5 +1,4 @@
 .login {
-  background-image: linear-gradient(#ff9200, #ffffff);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -10,10 +9,10 @@
 
 .login__container {
   background-color: rgba(255,255,255,0.1);
-  border: 2px solid white;
-  border-radius: 40px;
+  border: 2px solid black;
+  border-radius: 8px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  color: white;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -112,7 +111,7 @@
 .button {
   background-color:#FF9200;
   border: none;
-  border-radius: 25px;
+  border-radius: 8px;
   color: white;
   cursor: pointer;
   font-size: 16px;

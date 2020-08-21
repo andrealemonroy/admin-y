@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import gravatar from "../utils/gravatar";
-import { Link } from "react-router-dom";
-import classNames from 'classnames';
+import { Link, Redirect } from "react-router-dom";
+import classNames from "classnames";
 import { logoutRequest } from "../actions";
 import "../assets/styles/components/Header.scss";
 import logo from "../assets/static/logo_white.png";
 import userIcon from "../assets/static/user-icon.png";
-
-const Header = (props) => {
+import { AuthContext } from "../Auth.js";
+import app from "../config.js";
+const Header = props => {
   const { user, isLogin, isRegister } = props;
-  const hasUser = Object.keys(user).length > 0;
 
   const handleLogout = () => {
-    props.logoutRequest({})
+    app.auth().signOut();
   };
 
-  const headerClass = classNames('header',{
+  const handleAddUser = e => {
+    <Redirect to="/register" />;
+  };
+
+  const handleAddRoute = e => {
+    <Redirect to="/addRoute" />;
+  };
+  const headerClass = classNames("header", {
     isLogin,
     isRegister
-  })
+  });
+
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <header className={headerClass}>
@@ -28,8 +37,8 @@ const Header = (props) => {
       </Link>
       <div className="header__menu">
         <div className="header__menu--profile">
-          {hasUser ? (
-            <img src={gravatar(user.email)} alt={user.email} />
+          {currentUser ? (
+            <img src={userIcon} alt={user.email} />
           ) : (
             <img src={userIcon} alt="" />
           )}
@@ -37,16 +46,24 @@ const Header = (props) => {
           <p>Perfil</p>
         </div>
         <ul>
-          {hasUser ? (
+          {currentUser ? (
             <li>
               <a href="/">{user.name}</a>
             </li>
           ) : null}
 
-          {hasUser ? (
+          {currentUser ? (
             <li>
               <a href="#logout" onClick={handleLogout}>
                 Cerrar sesión
+              </a>
+              <br />
+              <a href="/register" onClick={handleAddUser}>
+                Añadir usuario
+              </a>
+              <br />
+              <a href="/addRoute" onClick={handleAddRoute}>
+                Añadir ruta
               </a>
             </li>
           ) : (
@@ -59,14 +76,14 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.user
   };
 };
 
 const mapDispatchToProps = {
   logoutRequest
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
