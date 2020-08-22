@@ -1,7 +1,7 @@
 import axios from 'axios'
 const api = axios.create({
   method: 'get',
-  baseURL: 'http://64.227.7.93/api/v1/',
+  baseURL: 'https://www.katanise.com/api/v1/',
   timeout: 40000,
   withCredentials: false,
   responseType: 'json',
