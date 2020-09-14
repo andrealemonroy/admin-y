@@ -17,11 +17,11 @@ const Header = props => {
   };
 
   const handleAddUser = e => {
-    <Redirect to="/register" />;
+    return <Redirect to="/register" />;
   };
 
   const handleAddRoute = e => {
-    <Redirect to="/addRoute" />;
+    return <Redirect to="/addRoute" />;
   };
   const headerClass = classNames("header", {
     isLogin,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { registerRequest } from "../actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Header from "../components/Header";
 import "../assets/styles/components/Register.scss";
 
@@ -20,7 +20,7 @@ const AddRoute = props => {
   const handleSubmit = event => {
     event.preventDefault();
     props.registerRequest(form);
-    <Redirect to="/" />;
+    return <Redirect to="/" />;
   };
   return (
     <>

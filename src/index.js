@@ -1,49 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./reducers";
-import App from "./routes/App";
 
-const initialState = {
-  user: {},
-  playing: {},
-  mylist: [],
-  trends: [
-    {
-      id: 2,
-      slug: "tvshow-2",
-      title: "In the Dark",
-      type: "Scripted",
-      language: "English",
-      year: 2009,
-      contentRating: "16+",
-      duration: 164,
-      cover: "http://dummyimage.com/800x600.png/99118E/ffffff",
-      description: "Vestibulum ac est lacinia nisi venenatis tristique",
-      source: "https://mdstrm.com/video/58333e214ad055d208427db5.mp4",
-    },
-    {
-      id: 13,
-      slug: "tvshow-13",
-      title: "NCIS: Los Angeles",
-      type: "Drama",
-      language: "English",
-      year: 2010,
-      contentRating: "16+",
-      duration: 160,
-      cover: "http://dummyimage.com/800x600.png/5472FF/ffffff",
-      description: "Vestibulum ac est lacinia nisi venenatis tristique",
-      source: "https://mdstrm.com/video/58333e214ad055d208427db5.mp4",
-    },
-  ],
-};
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-const store = createStore(reducer, initialState);
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/animate.min.css";
+import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
+import "./assets/css/demo.css";
+import "./assets/css/pe-icon-7-stroke.css";
+
+import AdminLayout from "./layout/admin";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("app")
+  <BrowserRouter>
+    <Switch>
+      <Route path="/admin" render={props => <AdminLayout {...props} />} />
+      <Redirect from="/" to="/admin/dashboard" />
+    </Switch>
+  </BrowserRouter>,
+  document.getElementById("root")
 );

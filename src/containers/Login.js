@@ -28,12 +28,12 @@ const Login = (props) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-          <Redirect to="/" />;
+          return <Redirect to="/" />;
       } catch (error) {
         alert(error);
       }
     },
-    [history]
+    []
   );
 
   const { currentUser } = useContext(AuthContext);
